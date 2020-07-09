@@ -12,7 +12,7 @@ jobs:
 
       # full bootstrap and publish
       - stage: build
-        if: type != pull_request
+        if: type = pull_request
         script:
           # see comment in `bootstrap_fun` for details on the procedure
           # env available in each stage
@@ -39,7 +39,7 @@ jobs:
       # it is still a true bootstrap.
       - stage: build
         name: "JDK 8 pr validation"
-        if: type = pull_request
+        if: type != pull_request
         script:
           - set -e
           - sbt -warn setupPublishCore generateBuildCharacterPropertiesFile headerCheck publishLocal
